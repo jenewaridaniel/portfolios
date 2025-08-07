@@ -55,7 +55,7 @@ const About = () => {
               
               <p className="text-lg">
                 My unique combination of technical education and extensive
-                practical experience allows me to approach problems with both
+                practical Experience allows me to approach problems with both
                 theoretical depth and real-world insight.
               </p>
               
