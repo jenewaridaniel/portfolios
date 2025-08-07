@@ -43,7 +43,7 @@ const About = () => {
             <div className="space-y-6 text-gray-700">
               <p className="text-lg">
                 <span className="font-semibold">Daniel Gilbert Jenewari</span> is
-                a final year Computer Science student at FUTO with 8 years of
+                a final year entrepreneurship innovation technology student at FUTO with 8 years of
                 frontend development experience.
               </p>
               
