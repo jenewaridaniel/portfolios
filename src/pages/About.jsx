@@ -43,7 +43,7 @@ const About = () => {
             <div className="space-y-6 text-gray-700">
               <p className="text-lg">
                 <span className="font-semibold">Daniel Gilbert Jenewari</span> is
-                a final year entrepreneurship innovation technology student at FUTO with 8 years of
+                a final year Entrepreneurship innovation technology student at FUTO with 8 years of
                 frontend development experience.
               </p>
               
@@ -55,7 +55,7 @@ const About = () => {
               
               <p className="text-lg">
                 My unique combination of technical education and extensive
-                practical Experience allows me to approach problems with both
+                practical experience allows me to approach problems with both
                 theoretical depth and real-world insight.
               </p>
               
