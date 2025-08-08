@@ -23,7 +23,7 @@ const Work = () => {
       url: "https://gabbyshotels.netlify.app",
       tech: ["Typescript", "Tailwind css","Firebase"],
       image: gab,
-      description: "a Hotel website with booking and reservation features",
+      description: "a Hotel website with booking and reservation features for a Hotel business",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const Work = () => {
       url: "https://morningbrewng.netlify.app/",
       tech: ["React","Tailwind css","Framer Motion"],
       image: brew,
-      description: "a Website for a coffee shop with menu and contact features",
+      description: "a Website for a coffee shop with menu and contact features for a coffee shop",
     },
     {
       id: 4,
