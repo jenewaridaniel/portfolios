@@ -5,7 +5,7 @@ const Stack = () => {
   const stackItems = [
     {
       name: "HTML",
-      icon: "https://cdn.creazilla.com/icons/3195437/html-icon-sm.png",
+      icon: 'https://cdn.creazilla.com/icons/3195437/html-icon-sm.png',
     },
     {
       name: "CSS",
