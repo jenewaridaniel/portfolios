@@ -129,7 +129,7 @@ const Navbar = () => {
               <div className="mt-auto pt-6 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <a
-                    href="https://twitter.com"
+                    href="https://github.com/jenewaridaniel"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-indigo-600 transition-colors duration-200"
