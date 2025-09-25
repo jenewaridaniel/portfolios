@@ -24,6 +24,10 @@ const Stack = () => {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     },
     {
+      name: "React Native",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
       name: "Tailwind CSS",
       icon: "https://images.icon-icons.com/3398/PNG/512/css_tailwind_logo_icon_214735.png",
     },

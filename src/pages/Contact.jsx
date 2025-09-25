@@ -27,7 +27,7 @@ const Contact = () => {
     },
     {
       name: "Instagram",
-      url: "https://www.instagram.com/techtrek?igsh=Z2hxZjV6cWJwd3pq&utm_source=qr",
+      url: "https://www.instagram.com/techtreknigeria?igsh=MWx0amRrOTJvbWQ5cQ%3D%3D&utm_source=qr",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

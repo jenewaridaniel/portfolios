@@ -111,7 +111,7 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                Web Developer
+                Web and App Developer
               </motion.span>
             </motion.h1>
 
