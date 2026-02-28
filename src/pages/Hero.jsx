@@ -1,5 +1,7 @@
 import React from "react";
 import icon from "../assets/icon.png";
+import toon from '../img/toon.gif'
+import toons from '../img/toons.png'
 import { motion } from "framer-motion";
 import Stack from "./Stack";
 
