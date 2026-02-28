@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import cont from "../assets/cont.png";
+import looking from '../img/loking.png'
 
 const Contact = () => {
   const socialLinks = [

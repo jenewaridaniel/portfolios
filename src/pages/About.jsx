@@ -1,5 +1,6 @@
 import React from "react";
 import me from "../assets/me.png";
+import daily from '../img/loking.png'
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -21,7 +22,7 @@ const About = () => {
           >
             <div className="relative">
               <img
-                src={me}
+                src={daily}
                 className="w-full max-w-lg"
                 alt="Daniel Gilbert Jenewari"
               />

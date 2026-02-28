@@ -1,7 +1,8 @@
 import React from "react";
 import icon from "../assets/icon.png";
-import toon from '../img/toon.gif'
-import toons from '../img/toons.png'
+import cartoon from "../img/art.png";
+// import toon from '../img/toon.gif'
+// import toons from '../img/toons.png'
 import { motion } from "framer-motion";
 import Stack from "./Stack";
 
@@ -139,8 +140,8 @@ const Hero = () => {
             className="flex-1"
           >
             <motion.img
-              src={icon}
-              className="md:w-[790px] w-full h-auto rounded-sm"
+              src={cartoon}
+              className="md:w-[570px] w-full h-auto rounded-sm"
               alt="Daniel's profile"
               initial={{ opacity: 0, rotate: -2 }}
               animate={{ opacity: 1, rotate: 0 }}
