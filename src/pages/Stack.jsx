@@ -1,101 +1,120 @@
 import React from "react";
-import node from '../assets/node.png'
+import { motion } from "framer-motion";
+
+import { useReveal } from "../lib/motion";
+
+const devicon = (p) => `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${p}.svg`;
+const simpleicon = (n) => `https://cdn.jsdelivr.net/npm/simple-icons@13/icons/${n}.svg`;
+
+const groups = [
+  {
+    id: "01",
+    label: "Interface",
+    note: "The part people touch.",
+    items: [
+      { name: "React", icon: devicon("react/react-original") },
+      { name: "TypeScript", icon: devicon("typescript/typescript-original") },
+      { name: "JavaScript", icon: devicon("javascript/javascript-original") },
+      { name: "Tailwind CSS", icon: devicon("tailwindcss/tailwindcss-original") },
+      { name: "Framer Motion", icon: devicon("framermotion/framermotion-original") },
+      { name: "HTML", icon: devicon("html5/html5-original") },
+      { name: "CSS", icon: devicon("css3/css3-original") },
+    ],
+  },
+  {
+    id: "02",
+    label: "Mobile & app",
+    note: "Native and cross-platform.",
+    items: [
+      { name: "Swift", icon: devicon("swift/swift-original") },
+      { name: "Kotlin", icon: devicon("kotlin/kotlin-original") },
+      { name: "React Native", icon: devicon("react/react-original") },
+    ],
+  },
+  {
+    id: "03",
+    label: "Backend & data",
+    note: "Where the state lives.",
+    items: [
+      { name: "Node.js", icon: devicon("nodejs/nodejs-original") },
+      { name: "Express", icon: devicon("express/express-original"), mono: true },
+      { name: "MongoDB", icon: devicon("mongodb/mongodb-original") },
+      { name: "Firebase", icon: devicon("firebase/firebase-plain") },
+      { name: "Supabase", icon: devicon("supabase/supabase-original") },
+    ],
+  },
+  {
+    id: "04",
+    label: "Tooling",
+    note: "Everything around the build.",
+    items: [
+      { name: "Git", icon: devicon("git/git-original") },
+      { name: "Clerk", icon: simpleicon("clerk"), mono: true },
+      { name: "Canva", icon: devicon("canva/canva-original") },
+    ],
+  },
+];
 
 const Stack = () => {
-  const stackItems = [
-    {
-      name: "HTML",
-      icon: 'https://cdn.creazilla.com/icons/3195437/html-icon-sm.png',
-    },
-    {
-      name: "CSS",
-      icon: "https://cdn.worldvectorlogo.com/logos/css-4.svg",
-    },
-    {
-      name: "JavaScript",
-      icon: "https://cdn.creazilla.com/icons/3204989/logo-javascript-icon-lg.png",
-    },
-    {
-      name: "TypeScript",
-      icon: "https://img.icons8.com/?size=512&id=cHBUT9SmrD2V&format=png",
-    },
-    {
-      name: "React",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
-    {
-      name: "React Native",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: "https://images.icon-icons.com/3398/PNG/512/css_tailwind_logo_icon_214735.png",
-    },
-    {
-      name: "Node.js",
-      icon: node,
-    },
-    {
-      name: "Express",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-    },
-    {
-      name: "MongoDB",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    },
-    {
-      name: "Firebase",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-    },
-    {
-      name: "Supabase",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
-    },
-    {
-      name: "Git",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    },
-    {
-      name: "Canva",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg",
-    },
-    {
-      name: "Framer Motion",
-      icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/vector-icons/brand-framer-motion-pk1mas1m7u9hi06fqzq77f.png/brand-framer-motion-nuunolaqtcs7zlblwkjs.png?_a=DATAg1AAZAA0",
-    },
-    { name: "Clerk", icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/clerk-uvna1mxd54k50cohb8o2i.png/clerk-nzr7956knokwjx841f6yye.png?_a=DATAg1AAZAA0" },
-  ];
+  const reveal = useReveal();
 
   return (
-    <div className="bg-gray-950 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-gray-50">
-            My <span className="font-semibold">Stack</span>
-          </h1>
-        </div>
+  <div className="bg-ink px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+    <div className="mx-auto max-w-[92rem]">
+      <motion.h2
+        {...reveal()}
+        className="font-display max-w-[14ch] text-display font-semibold text-paper"
+      >
+        What I build <span className="text-accent">with</span>
+      </motion.h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-8">
-          {stackItems.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center group transition-all duration-300 hover:scale-105"
-            >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-gray-900 rounded-lg p-3 mb-2">
-                <img
-                  src={item.icon}
-                  alt={item.name}
-                  className="w-full h-full object-contain filter grayscale contrast-200 brightness-0 invert"
-                />
+      <div className="mt-16 lg:mt-24">
+        {groups.map((group, gi) => (
+          <motion.section
+            key={group.id}
+            {...reveal(gi * 0.06)}
+            className="grid gap-y-6 border-t border-ink-3 py-9 lg:grid-cols-12 lg:gap-x-10 lg:py-12"
+          >
+            <header className="min-w-0 lg:col-span-4">
+              <div className="flex items-baseline gap-4">
+                <span className="eyebrow text-accent">{group.id}</span>
+                <h3 className="font-display text-title font-medium text-paper">
+                  {group.label}
+                </h3>
               </div>
-              <span className="text-gray-300 text-sm sm:text-base group-hover:text-white transition-colors">
-                {item.name}
-              </span>
-            </div>
-          ))}
-        </div>
+              <p className="mt-2 pl-[3.1rem] text-sm text-muted-dk">{group.note}</p>
+            </header>
+
+            <ul className="flex min-w-0 flex-wrap gap-2.5 lg:col-span-8 lg:justify-end">
+              {group.items.map((item) => (
+                <li key={`${group.id}-${item.name}`}>
+                  <span className="group flex items-center gap-3 bg-ink-2 py-3 pl-3 pr-5 transition-colors duration-300 hover:bg-ink-3">
+                    <img
+                      src={item.icon}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                      /* Brand colour by default. Marks that are black on
+                         transparent are inverted to white, or they disappear
+                         into the dark ground entirely. */
+                      className={`h-6 w-6 shrink-0 object-contain ${
+                        item.mono ? "brightness-0 invert" : ""
+                      }`}
+                    />
+                    <span className="whitespace-nowrap text-sm text-paper">
+                      {item.name}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+        ))}
+        <div className="border-t border-ink-3" />
       </div>
     </div>
+  </div>
   );
 };
 

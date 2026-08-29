@@ -1,156 +1,94 @@
 import React from "react";
-import icon from "../assets/icon.png";
-import cartoon from "../img/art.png";
-// import toon from '../img/toon.gif'
-// import toons from '../img/toons.png'
 import { motion } from "framer-motion";
-import Stack from "./Stack";
+import { ArrowDownRight } from "lucide-react";
+import cartoon from "../img/art.png";
+import { useReveal } from "../lib/motion";
 
 const Hero = () => {
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { scale: 0.9, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 10,
-        delay: 0.4,
-      },
-    },
-    hover: {
-      scale: 1.02,
-      transition: { duration: 0.3 },
-    },
-  };
-
-  const brushStrokeVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: [0, 0.3, 0.4, 0.3],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut",
-      },
-    },
-  };
+  const reveal = useReveal();
 
   return (
-    <section className="relative bg-gray-50/60 pt-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Paint brush stroke backgrounds with animation */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <motion.div
-          variants={brushStrokeVariants}
-          initial="hidden"
-          animate="visible"
-          className="absolute top-0 left-0 w-full h-[200px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyMDAiIHZpZXdCb3g9IjAgMCAxMjAwIDEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cGF0aCBkPSJNMTIwMCAyMGMtMTUwIDAtMzAwIDAtNDUwIDBzLTMwMCAwLTQ1MCAwLTMwMCAwLTQ1MCAwLTMwMCAwLTQ1MCAwUzAgMjAgMCAyMHYxMDBoMTIwMHoiIGZpbGw9IiNlZGVkZmYiIGZpbGwtb3BhY2l0eT0iMC43Ii8+PC9zdmc+')] bg-no-repeat bg-cover"
-        ></motion.div>
+  <section className="relative bg-paper overflow-hidden">
+    {/* Accent field anchored to the illustration, bleeding off the right edge. */}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute right-0 top-[18%] hidden h-[62%] w-[38%] bg-accent-wash lg:block"
+    />
 
-        <motion.div
-          variants={brushStrokeVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.5 }}
-          className="absolute top-1/3 -right-40 w-[600px] h-[300px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDYwMCAzMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMTUwQzEwMCAxNTAgMjAwIDEwMCAzMDAgMTUwczIwMCAxMDAgMzAwIDUwIiBzdHJva2U9IiNlMGU1ZmYiIHN0cm9rZS13aWR0aD0iODAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==')] bg-no-repeat bg-contain mix-blend-overlay"
-        ></motion.div>
-      </div>
+    <div className="relative mx-auto max-w-[92rem] px-5 pt-14 sm:px-8 lg:px-12 lg:pt-24">
+      <div className="grid items-end gap-y-10 lg:grid-cols-12 lg:gap-x-8">
+        <div className="min-w-0 lg:col-span-7 lg:pb-10">
+          <motion.p {...reveal(0)} className="eyebrow text-accent-dim">
+            Port Harcourt, Nigeria
+          </motion.p>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col lg:flex-row items-center justify-between gap-12"
-        >
-          {/* Content - comes first on mobile */}
-          <motion.div variants={itemVariants} className="flex-1">
-            <motion.h1
-              className="text-4xl sm:text-5xl font-light leading-tight "
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, type: "spring" }}
-            >
-              Hello, I'm{" "}
-              <motion.span
-                className="font-light"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                Daniel
-              </motion.span>
-              <br />
-              <motion.span
-                className="text-gray-950 font-medium"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                Web and App Developer
-              </motion.span>
-            </motion.h1>
-
-            <motion.a
-              href="#work"
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "#1a1a1a",
-                boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-block border-2 border-gray-800 text-gray-800 font-medium py-2.5 my-3 px-6 rounded-sm transition-all duration-200 hover:bg-gray-800 hover:text-white"
-            >
-              View my work →
-            </motion.a>
-          </motion.div>
-
-          {/* Image - comes second on mobile */}
-          <motion.div
-            variants={imageVariants}
-            whileHover="hover"
-            className="flex-1"
+          <motion.h1
+            {...reveal(0.08, 34)}
+            className="font-display mt-5 text-mega font-semibold text-ink"
           >
-            <motion.img
-              src={cartoon}
-              className="md:w-[570px] w-full h-auto rounded-sm"
-              alt="Daniel's profile"
-              initial={{ opacity: 0, rotate: -2 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ delay: 0.8, type: "spring" }}
-            />
+            Web &amp; app
+            <br />
+            <span className="text-accent">developer.</span>
+          </motion.h1>
+
+          <motion.p
+            {...reveal(0.16)}
+            className="mt-8 max-w-[52ch] text-base leading-relaxed text-muted sm:text-lg"
+          >
+            I&apos;m Daniel Gilbert Jenewari. Eight years building interfaces
+            people actually finish using, for hotels, boutiques, coffee shops
+            and storefronts across Nigeria. Now on iOS and Android too.
+          </motion.p>
+
+          <motion.div {...reveal(0.24)} className="mt-10 flex flex-wrap items-center gap-3">
+            <a
+              href="#work"
+              className="group inline-flex items-center gap-2.5 bg-ink px-7 py-4 text-sm font-medium tracking-wide text-paper transition-colors duration-300 hover:bg-accent"
+            >
+              See the work
+              <ArrowDownRight
+                size={17}
+                strokeWidth={2}
+                className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:translate-y-0.5"
+              />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-7 py-4 text-sm font-medium tracking-wide text-ink underline decoration-paper-3 decoration-1 underline-offset-[6px] transition-colors duration-300 hover:decoration-accent"
+            >
+              Start a project
+            </a>
           </motion.div>
+        </div>
+
+        <motion.div
+          {...reveal(0.12)}
+          className="relative min-w-0 lg:col-span-5 lg:-mr-12 xl:-mr-20"
+        >
+          <img
+            src={cartoon}
+            alt="Illustrated portrait of Daniel at his desk"
+            className="w-full max-w-md object-contain lg:max-w-none"
+            loading="eager"
+            decoding="async"
+          />
         </motion.div>
       </div>
-     
+
+      {/* Quiet fact line. Deliberately a sentence, not a stat grid. */}
+      <motion.div
+        {...reveal(0.32, 14)}
+        className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-paper-3 py-6 text-xs text-muted lg:mt-10"
+      >
+        <span>Eight years shipping</span>
+        <span aria-hidden="true" className="text-paper-3">/</span>
+        <span>React, React&nbsp;Native, Swift, Kotlin</span>
+        <span aria-hidden="true" className="text-paper-3">/</span>
+        <span>Final year, Entrepreneurship &amp; Innovation Technology, FUTO</span>
+        <span aria-hidden="true" className="text-paper-3">/</span>
+        <span className="text-accent-dim">Open to new work</span>
+      </motion.div>
+      </div>
     </section>
   );
 };

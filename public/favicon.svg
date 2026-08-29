@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#2b211d"/>
+  <!-- T, drawn as rects so it never depends on a font being present -->
+  <rect x="12" y="16" width="40" height="9" fill="#f7f2ed"/>
+  <rect x="27.5" y="16" width="9" height="32" fill="#f7f2ed"/>
+  <!-- the accent full stop from the "Techtrek." wordmark -->
+  <rect x="41" y="39" width="9" height="9" fill="#e5561f"/>
+</svg>

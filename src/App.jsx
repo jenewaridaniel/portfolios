@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { MotionConfig } from "framer-motion";
 import Home from "./pages/Home";
 import Navbar from "./Navbar/Navbar";
 
@@ -10,24 +11,17 @@ const ROUTER = {
 };
 
 const AppLayout = () => (
-  <>
+  <MotionConfig reducedMotion="user">
     <Navbar />
     <Outlet />
-  </>
+  </MotionConfig>
 );
-
-// Layout without Navbar (for Dashboard)
-const DashboardLayout = () => <Outlet />;
 
 const router = createBrowserRouter([
   {
-    element: <AppLayout />, 
-    children: [
-      { path: ROUTER.HOME, element: <Home /> },
-  
-    ],
+    element: <AppLayout />,
+    children: [{ path: ROUTER.HOME, element: <Home /> }],
   },
- 
 ]);
 
 const App = () => {
