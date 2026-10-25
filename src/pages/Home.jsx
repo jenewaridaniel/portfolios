@@ -23,11 +23,11 @@ const Home = () => {
     <main id="top">
       <Hero />
 
+      <Work />
+
       <section id="stack">
         <Stack />
       </section>
-
-      <Work />
 
       <section id="about">
         <About />

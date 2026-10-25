@@ -46,7 +46,7 @@ const Navbar = () => {
           href="#top"
           className="font-display text-xl font-semibold tracking-tight text-ink"
         >
-          Techtrek
+          Daniel Jenewari
           <span className="text-accent">.</span>
         </a>
 
@@ -66,12 +66,10 @@ const Navbar = () => {
           </ul>
 
           <a
-            href="https://wa.me/2348085997087"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="eyebrow bg-ink px-6 py-3.5 text-paper transition-colors duration-300 hover:bg-accent"
           >
-            Say hello
+            Get in touch
           </a>
         </div>
 
@@ -129,12 +127,11 @@ const Navbar = () => {
               </ul>
 
               <a
-                href="https://wa.me/2348085997087"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
+                onClick={() => setIsOpen(false)}
                 className="eyebrow mt-auto bg-ink px-6 py-4 text-center text-paper"
               >
-                Say hello
+                Get in touch
               </a>
             </motion.div>
           </>

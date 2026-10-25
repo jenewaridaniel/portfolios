@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import cartoon from "../img/art.png";
 import { useReveal } from "../lib/motion";
 
@@ -35,9 +35,9 @@ const Hero = () => {
             {...reveal(0.16)}
             className="mt-8 max-w-[52ch] text-base leading-relaxed text-muted sm:text-lg"
           >
-            I&apos;m Daniel Gilbert Jenewari. Eight years building interfaces
-            people actually finish using, for hotels, boutiques, coffee shops
-            and storefronts across Nigeria. Now on iOS and Android too.
+            I&apos;m Daniel Gilbert Jenewari. I&apos;ve built for the web since
+            2018, for hotels, marketplaces and storefronts across Nigeria, and
+            now ship iOS and Android apps in React Native.
           </motion.p>
 
           <motion.div {...reveal(0.24)} className="mt-10 flex flex-wrap items-center gap-3">
@@ -53,8 +53,22 @@ const Hero = () => {
               />
             </a>
             <a
+              href="https://github.com/jenewaridaniel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2.5 border border-ink px-7 py-[15px] text-sm font-medium tracking-wide text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
+            >
+              GitHub
+              <span className="sr-only">(opens in a new tab)</span>
+              <ArrowUpRight
+                size={17}
+                strokeWidth={2}
+                className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+            <a
               href="#contact"
-              className="inline-flex items-center px-7 py-4 text-sm font-medium tracking-wide text-ink underline decoration-paper-3 decoration-1 underline-offset-[6px] transition-colors duration-300 hover:decoration-accent"
+              className="inline-flex items-center py-4 text-sm font-medium tracking-wide text-ink underline sm:px-4 decoration-paper-3 decoration-1 underline-offset-[6px] transition-colors duration-300 hover:decoration-accent"
             >
               Start a project
             </a>
@@ -67,7 +81,7 @@ const Hero = () => {
         >
           <img
             src={cartoon}
-            alt="Illustrated portrait of Daniel at his desk"
+            alt="Illustrated figure in a turtleneck, hands in pockets"
             className="w-full max-w-md object-contain lg:max-w-none"
             loading="eager"
             decoding="async"
@@ -78,15 +92,17 @@ const Hero = () => {
       {/* Quiet fact line. Deliberately a sentence, not a stat grid. */}
       <motion.div
         {...reveal(0.32, 14)}
-        className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-paper-3 py-6 text-xs text-muted lg:mt-10"
+        className="mt-4 flex flex-col gap-x-6 gap-y-2 border-t border-paper-3 py-6 text-xs text-muted sm:flex-row sm:flex-wrap sm:items-center lg:mt-14"
       >
-        <span>Eight years shipping</span>
-        <span aria-hidden="true" className="text-paper-3">/</span>
-        <span>React, React&nbsp;Native, Swift, Kotlin</span>
-        <span aria-hidden="true" className="text-paper-3">/</span>
+        <span>Building since 2018</span>
+        <span aria-hidden="true" className="hidden text-paper-3 sm:inline">/</span>
+        <span>React, React&nbsp;Native, TypeScript</span>
+        <span aria-hidden="true" className="hidden text-paper-3 sm:inline">/</span>
         <span>Final year, Entrepreneurship &amp; Innovation Technology, FUTO</span>
-        <span aria-hidden="true" className="text-paper-3">/</span>
-        <span className="text-accent-dim">Open to new work</span>
+        <span aria-hidden="true" className="hidden text-paper-3 sm:inline">/</span>
+        <span className="font-medium text-accent-dim">
+          Open to full-time roles and freelance projects
+        </span>
       </motion.div>
       </div>
     </section>

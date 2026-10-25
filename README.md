@@ -1,12 +1,23 @@
-# React + Vite
+# Daniel Gilbert Jenewari: portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal site for a web and app developer in Port Harcourt, Nigeria. One page:
+selected work, stack, about and contact, written for both hiring teams and
+clients.
 
-Currently, two official plugins are available:
+**Stack:** React 19, Vite, Tailwind CSS 4, Framer Motion.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run it
 
-## Expanding the ESLint configuration
+```bash
+pnpm install
+pnpm dev      # http://localhost:5173
+pnpm build    # production build into dist/
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Adding a project
+
+All work lives in [`src/data/projects.js`](src/data/projects.js). Set
+`featured: true` for the large showcase, and `platform` to `"web"`, `"app"` or
+`"game"` to pick the frame. Apps take an array of phone `screens` instead of a
+single `image`. Fields left `null` are hidden, so leave `result` empty rather
+than guess at an outcome.

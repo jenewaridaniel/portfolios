@@ -17,6 +17,7 @@ const groups = [
       { name: "JavaScript", icon: devicon("javascript/javascript-original") },
       { name: "Tailwind CSS", icon: devicon("tailwindcss/tailwindcss-original") },
       { name: "Framer Motion", icon: devicon("framermotion/framermotion-original") },
+      { name: "Three.js", icon: devicon("threejs/threejs-original"), mono: true },
       { name: "HTML", icon: devicon("html5/html5-original") },
       { name: "CSS", icon: devicon("css3/css3-original") },
     ],
@@ -26,9 +27,10 @@ const groups = [
     label: "Mobile & app",
     note: "Native and cross-platform.",
     items: [
+      { name: "React Native", icon: devicon("react/react-original") },
+      { name: "Expo", icon: devicon("expo/expo-original"), mono: true },
       { name: "Swift", icon: devicon("swift/swift-original") },
       { name: "Kotlin", icon: devicon("kotlin/kotlin-original") },
-      { name: "React Native", icon: devicon("react/react-original") },
     ],
   },
   {
@@ -49,8 +51,9 @@ const groups = [
     note: "Everything around the build.",
     items: [
       { name: "Git", icon: devicon("git/git-original") },
+      { name: "Vite", icon: devicon("vitejs/vitejs-original") },
+      { name: "Vitest", icon: devicon("vitest/vitest-original") },
       { name: "Clerk", icon: simpleicon("clerk"), mono: true },
-      { name: "Canva", icon: devicon("canva/canva-original") },
     ],
   },
 ];

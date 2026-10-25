@@ -8,45 +8,71 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { websites } from "../data/projects";
+import { projects } from "../data/projects";
 import { EASE, useReveal } from "../lib/motion";
 
-const featured = websites.filter((site) => site.featured);
-const earlier = websites.filter((site) => !site.featured);
+const featured = projects.filter((project) => project.featured);
+const earlier = projects.filter((project) => !project.featured);
+
+const PLATFORM = { web: "Web", app: "App", game: "Game" };
 
 const pad = (n) => String(n).padStart(2, "0");
 const hostname = (url) => new URL(url).hostname.replace(/^www\./, "");
 
+// Live site first; code-only projects point at their repository.
+const linkOf = (project) => project.url ?? project.repo;
+const addressOf = (project) =>
+  project.url ? hostname(project.url) : project.repo.replace(/^https:\/\//, "");
+
 const meta = (project) =>
-  [project.kind, project.year].filter(Boolean).join("  ·  ");
+  [project.kind, project.year, !project.url && project.status]
+    .filter(Boolean)
+    .join("  ·  ");
 
 /* ------------------------------------------------------------------------ */
 /* Featured showcase                                                         */
 /* ------------------------------------------------------------------------ */
 
+/* The address bar carries the real domain or repository: proof, not
+   decoration. Only a live URL earns the accent dot. */
+const FrameBar = ({ project }) => (
+  <div className="flex items-center justify-between gap-4 border-b border-paper-3 px-4 py-2.5">
+    <span className="min-w-0 truncate text-xs text-muted">
+      {addressOf(project)}
+    </span>
+    {project.url ? (
+      <span className="eyebrow flex shrink-0 items-center gap-2 text-accent-dim">
+        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+        Live
+      </span>
+    ) : (
+      <span className="eyebrow flex shrink-0 items-center gap-2 text-muted">
+        <span className="h-1.5 w-1.5 rounded-full border border-muted" />
+        {project.status ?? "Code"}
+      </span>
+    )}
+  </div>
+);
+
+const FrameLink = ({ project, children }) => (
+  <a
+    href={linkOf(project)}
+    target="_blank"
+    rel="noopener noreferrer"
+    tabIndex={-1}
+    aria-hidden="true"
+    className="group block border border-paper-3 bg-paper-2"
+  >
+    <FrameBar project={project} />
+    {children}
+  </a>
+);
+
 const BrowserFrame = ({ project }) => {
   const reduced = useReducedMotion();
 
   return (
-    <a
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      tabIndex={-1}
-      aria-hidden="true"
-      className="group block border border-paper-3 bg-paper-2"
-    >
-      {/* The address bar carries the real domain: proof, not decoration. */}
-      <div className="flex items-center justify-between gap-4 border-b border-paper-3 px-4 py-2.5">
-        <span className="min-w-0 truncate text-xs text-muted">
-          {hostname(project.url)}
-        </span>
-        <span className="eyebrow flex shrink-0 items-center gap-2 text-accent-dim">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          Live
-        </span>
-      </div>
-
+    <FrameLink project={project}>
       <div className="overflow-hidden">
         <motion.div
           initial={reduced ? false : { scale: 1.08 }}
@@ -63,9 +89,54 @@ const BrowserFrame = ({ project }) => {
           />
         </motion.div>
       </div>
-    </a>
+    </FrameLink>
   );
 };
+
+/* Same 16:10 footprint as a browser frame, so the column keeps its rhythm.
+   Three phones rise out of the bottom edge; the middle one stands taller. */
+const PhoneFrame = ({ project }) => {
+  const reduced = useReducedMotion();
+
+  return (
+    <FrameLink project={project}>
+      <div className="relative aspect-[16/10] overflow-hidden bg-accent-wash">
+        <div className="absolute inset-x-0 top-[9%] flex items-start justify-center gap-[4.5%]">
+          {project.screens.map((screen, index) => (
+            <motion.div
+              key={screen.src}
+              initial={reduced ? false : { y: 70, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 1.1, ease: EASE, delay: index * 0.1 }}
+              className={`w-[27%] shrink-0 ${index === 1 ? "-mt-[2.5%]" : "mt-[3.5%]"}`}
+            >
+              <div
+                style={{ transitionDelay: `${index * 60}ms` }}
+                className="overflow-hidden rounded-[14%/6.5%] border-[3px] border-ink bg-ink shadow-[0_24px_48px_-24px_oklch(0.175_0.012_45/0.45)] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 sm:border-[5px]"
+              >
+                <img
+                  src={screen.src}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="block aspect-[390/844] w-full object-cover object-top"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </FrameLink>
+  );
+};
+
+const Frame = ({ project }) =>
+  project.platform === "app" ? (
+    <PhoneFrame project={project} />
+  ) : (
+    <BrowserFrame project={project} />
+  );
 
 const Details = ({ project, number }) => (
   <div className="min-w-0">
@@ -92,20 +163,33 @@ const Details = ({ project, number }) => (
       <p className="mt-6 text-xs text-muted">{project.tech.join("  ·  ")}</p>
     )}
 
-    <a
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group mt-8 inline-flex max-w-full items-center gap-2.5 bg-ink px-6 py-3.5 text-sm font-medium tracking-wide text-paper transition-colors duration-300 hover:bg-accent"
-    >
-      Visit site
-      <span className="sr-only">: {project.name} (opens in a new tab)</span>
-      <ArrowUpRight
-        size={16}
-        strokeWidth={2}
-        className="shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-      />
-    </a>
+    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <a
+        href={linkOf(project)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex max-w-full items-center gap-2.5 bg-ink px-6 py-3.5 text-sm font-medium tracking-wide text-paper transition-colors duration-300 hover:bg-accent"
+      >
+        {project.url ? "Visit site" : "Read the code"}
+        <span className="sr-only">: {project.name} (opens in a new tab)</span>
+        <ArrowUpRight
+          size={16}
+          strokeWidth={2}
+          className="shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
+      </a>
+
+      {project.url && project.repo && (
+        <a
+          href={project.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-ink underline decoration-paper-3 underline-offset-[6px] transition-colors duration-300 hover:decoration-accent"
+        >
+          Source<span className="sr-only">: {project.name} on GitHub</span>
+        </a>
+      )}
+    </div>
   </div>
 );
 
@@ -143,7 +227,7 @@ const Showcase = () => {
         <div className="sticky top-28">
           <ol className="border-t border-paper-3">
             {featured.map((project, index) => (
-              <li key={project.url} className="border-b border-paper-3">
+              <li key={project.name} className="border-b border-paper-3">
                 <button
                   type="button"
                   onClick={() => jumpTo(index)}
@@ -165,6 +249,9 @@ const Showcase = () => {
                     }`}
                   >
                     {project.name}
+                  </span>
+                  <span className="ml-auto shrink-0 pl-3 text-xs text-muted">
+                    {PLATFORM[project.platform]}
                   </span>
                 </button>
               </li>
@@ -190,12 +277,12 @@ const Showcase = () => {
       <div className="space-y-20 lg:col-span-8 lg:space-y-36">
         {featured.map((project, index) => (
           <motion.article
-            key={project.url}
+            key={project.name}
             ref={(el) => (itemRefs.current[index] = el)}
             data-index={index}
             {...reveal(0, 40)}
           >
-            <BrowserFrame project={project} />
+            <Frame project={project} />
             <div className="mt-8 lg:hidden">
               <Details project={project} number={pad(index + 1)} />
             </div>
@@ -207,7 +294,7 @@ const Showcase = () => {
 };
 
 /* ------------------------------------------------------------------------ */
-/* Earlier sites: compact index with a cursor-tracked preview                */
+/* More websites: compact index with a cursor-tracked preview                */
 /* ------------------------------------------------------------------------ */
 
 const EarlierList = () => {
@@ -231,7 +318,7 @@ const EarlierList = () => {
   return (
     <>
       <motion.p {...reveal()} className="eyebrow pb-4 text-muted">
-        Earlier sites
+        More websites
       </motion.p>
 
       <div
@@ -344,17 +431,18 @@ const Work = () => {
           className="flex flex-wrap items-end justify-between gap-6"
         >
           <h2 className="font-display max-w-[16ch] text-display font-semibold text-ink">
-            Things I have <span className="text-accent">shipped</span>
+            Things I have <span className="text-accent">built</span>
           </h2>
-          <p className="max-w-[34ch] text-sm text-muted">
-            Websites and mobile apps for real businesses, designed and built
-            end to end. Every site here is still online.
+          <p className="max-w-[36ch] text-sm leading-relaxed text-muted">
+            Client websites, a mobile app and a 3D game, designed and built end
+            to end. Every live link here still works, and the rest open their
+            source.
           </p>
         </motion.div>
 
         <div className="mt-14 flex items-baseline justify-between gap-6 pb-4 lg:mt-20 lg:pb-6">
           <span className="eyebrow text-muted">
-            Selected websites &middot; {pad(featured.length)}
+            Selected work &middot; {pad(featured.length)}
           </span>
         </div>
 

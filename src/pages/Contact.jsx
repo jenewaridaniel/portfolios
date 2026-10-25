@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 
 import { useReveal } from "../lib/motion";
 
-const EMAIL = "techtrekng@gmail.com";
+const EMAIL = "projects@techtrekng.com";
 const WHATSAPP = "https://wa.me/2348085997087";
+const GITHUB = "https://github.com/jenewaridaniel";
 
 const socials = [
   {
@@ -42,7 +43,8 @@ const Contact = () => {
       <div className="grid gap-x-16 gap-y-10 lg:grid-cols-12">
         <motion.div {...reveal()} className="min-w-0 lg:col-span-7">
           <h2 className="font-display max-w-[12ch] text-display font-semibold text-paper">
-            Let&apos;s build <span className="text-accent">yours</span>
+            Hiring, or building? Let&apos;s{" "}
+            <span className="text-accent">talk</span>
           </h2>
         </motion.div>
 
@@ -50,57 +52,100 @@ const Contact = () => {
           {...reveal(0.1)}
           className="max-w-[46ch] self-end text-base leading-relaxed text-muted-dk sm:text-lg lg:col-span-5"
         >
-          Have something in mind, or just want to talk it through first?
-          WhatsApp is fastest, but email reaches me just as well.
+          Email reaches me for roles and interviews. For a new site or app,
+          WhatsApp is the fastest way to start.
         </motion.p>
       </div>
 
       <motion.div {...reveal(0.16)} className="mt-14 border-t border-ink-3 pt-10 lg:mt-20">
         <a
           href={`mailto:${EMAIL}`}
-          className="font-display block break-words text-display font-semibold text-paper transition-colors duration-300 hover:text-accent"
+          className="font-display block break-words text-[clamp(1.75rem,9vw,2.4rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-paper transition-colors duration-300 hover:text-accent sm:text-display"
         >
-          {EMAIL}
+          {/* On narrow screens, break after the @ rather than mid-domain. */}
+          {EMAIL.split("@")[0]}@<wbr />
+          {EMAIL.split("@")[1]}
         </a>
 
-        <div className="mt-12 flex flex-wrap items-center gap-4">
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center bg-accent px-7 py-4 text-sm font-medium tracking-wide text-paper transition-colors duration-300 hover:bg-accent-dim"
-          >
-            Message on WhatsApp
-          </a>
+        {/* Two audiences, two doors. Same weight, so neither reads as an
+            afterthought. */}
+        <div className="mt-14 grid gap-px bg-ink-3 sm:grid-cols-2">
+          <div className="bg-ink pb-10 pt-8 sm:pr-10">
+            <h3 className="font-display text-title font-medium text-paper">
+              For teams hiring
+            </h3>
+            <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-muted-dk">
+              My code is on GitHub. Email me for a CV or to set up a call.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a
+                href={GITHUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-paper px-7 py-4 text-sm font-medium tracking-wide text-ink transition-colors duration-300 hover:bg-accent hover:text-paper"
+              >
+                View GitHub<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <a
+                href={`mailto:${EMAIL}?subject=${encodeURIComponent("Role")}`}
+                className="text-sm font-medium text-paper underline decoration-ink-3 underline-offset-[6px] transition-colors duration-300 hover:decoration-accent"
+              >
+                Email about a role
+              </a>
+            </div>
+          </div>
 
-          <ul className="flex items-center gap-1">
-            {socials.map((social) => (
-              <li key={social.name}>
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="flex h-12 w-12 items-center justify-center text-muted-dk transition-colors duration-300 hover:bg-ink-2 hover:text-paper"
-                >
-                  <svg
-                    viewBox={social.viewBox}
-                    fill="currentColor"
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                  >
-                    <path fillRule="evenodd" clipRule="evenodd" d={social.path} />
-                  </svg>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="bg-ink pb-10 pt-8 sm:pl-10">
+            <h3 className="font-display text-title font-medium text-paper">
+              For new projects
+            </h3>
+            <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-muted-dk">
+              Tell me what the business needs and where it is stuck. A short
+              message is plenty to start.
+            </p>
+            <div className="mt-7">
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-accent px-7 py-4 text-sm font-medium tracking-wide text-paper transition-colors duration-300 hover:bg-accent-dim"
+              >
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
+
+        <ul className="mt-6 flex items-center gap-1 sm:-ml-3">
+          {socials.map((social) => (
+            <li key={social.name}>
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.name}
+                className="flex h-12 w-12 items-center justify-center text-muted-dk transition-colors duration-300 hover:bg-ink-2 hover:text-paper"
+              >
+                <svg
+                  viewBox={social.viewBox}
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path fillRule="evenodd" clipRule="evenodd" d={social.path} />
+                </svg>
+              </a>
+            </li>
+          ))}
+        </ul>
       </motion.div>
 
       <footer className="mt-24 flex flex-wrap items-center justify-between gap-4 border-t border-ink-3 py-8 text-xs text-muted-dk lg:mt-28">
         <span>Daniel Gilbert Jenewari &middot; Techtrek</span>
-        <span>Port Harcourt, Nigeria &middot; {new Date().getFullYear()}</span>
+        {/* Clears the fixed back-to-top button. */}
+        <span className="pr-16">
+          Port Harcourt, Nigeria &middot; {new Date().getFullYear()}
+        </span>
       </footer>
     </div>
     </section>
